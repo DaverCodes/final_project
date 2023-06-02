@@ -3,7 +3,6 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 function Nav() {
-
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
@@ -11,6 +10,11 @@ function Nav() {
           <li className="mx-1">
             <Link to="/orderHistory">
               Order History
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/profile">
+              Profile
             </Link>
           </li>
           <li className="mx-1">
