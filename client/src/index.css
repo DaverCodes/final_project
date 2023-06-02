@@ -21,7 +21,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Karla', sans-serif;
+  font-family: 'Lucida Console';
   font-weight: 400;
   line-height: 1.5;
   font-size: 16px;
@@ -35,7 +35,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik', sans-serif;
+  font-family:'Lucida Handwriting';
   font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
@@ -68,6 +68,7 @@ h6 {
 p {
   font-size: 1.1rem;
   margin-top: 0;
+  font-family: 'Lucida Console';
 }
 
 a {
@@ -86,18 +87,22 @@ header {
 
 header a {
   color: var(--light);
+  font-family: 'Lucida Handwriting';
 }
 
 button {
   font-size: 1rem;
+  font-family: 'Lucida Console';
+  font-style: inherit;
   text-decoration: none;
   padding: 0.25rem 1rem;
-  border-radius: .5rem;
-  border: none;
+  border-radius: 1rem;
+  border: solid;
+  border-color: var(--primary);
   outline: none;
   cursor: pointer;
   margin: 0 1px;
-  background-color: var(--secondary);
+  background-image: linear-gradient(to right,var(--secondary)  , var(--dark));
 }
 
 button:hover {
