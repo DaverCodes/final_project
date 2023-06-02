@@ -17,6 +17,10 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "mongodb": "^5.6.0"
+=======
     "axios": "^1.4.0"
+>>>>>>> 44fd7c769a212aa1fdaf3383601689d3e3e19e6f
   }
 }
