@@ -22,6 +22,7 @@ function Upload() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [error, setError] = useState("");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -51,6 +52,7 @@ function Upload() {
       .catch((error) => {
         console.log(error);
         setUploading(false);
+        setError("Error uploading image");
       });
   };
 
@@ -64,11 +66,12 @@ function Upload() {
       />
       <button onClick={uploadImage}>Upload Image</button>
 
-      {uploading && <p>Please wait for image upload...</p>}
+      {uploading && <p>Please Wait...</p>}
+      {error && <p>{error}</p>}
 
       {imageUrl && (
         <div>
-          <h3>Listing Photo:</h3>
+          <h3>Uploaded Image:</h3>
           <Image cloudName="di6pdrfqg" publicId={imageUrl} width="300" />
         </div>
       )}
