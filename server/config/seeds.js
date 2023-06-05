@@ -9,7 +9,12 @@ db.once('open', async () => {
     { name: 'Household Supplies' },
     { name: 'Electronics' },
     { name: 'Books' },
-    { name: 'Toys' }
+    { name: 'Toys' },
+    { name: 'Pharmacy'},
+    { name: 'Pet Supplies'},
+    { name: 'Clothing & Accessories'},
+    { name: 'Furniture'},
+    { name: 'Sports & Outdoors'}
   ]);
 
   console.log('categories seeded');
