@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
-import "./Profile.css";
+import Axios from "axios";
+import { Image } from "cloudinary-react"
 
-function Profile() {
-  render() {
-    return (
-        <div className
-    )
-  }
+function Upload() {
+const [imageSelected, setImageSelected] = useState("")
+
+
+  const uploadImage = (files) => {
+    console.log(files[0]);
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "wayfarer");
+    Axios.post("https://api.cloudinary.com/v1_1/di6pdrfqg/image/upload", formData).then((response)=> console.log(response));
+  };
+
+  return (
+    <div>
+      <input
+        type="file"
+        onChange={(event) => {
+          setImageSelected(event.target.files[0]);
+        }}
+      />
+      <button onClick={uploadImage}>upload image</button>
+
+    </div>
+  );
 }
+
+export default Upload;
