@@ -3,8 +3,8 @@ import Axios from "axios";
 import { Image } from "cloudinary-react";
 import Modal from "react-modal";
 import "./Profile.css"
-import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../utils/mutations';
 
 Modal.setAppElement("#root");
@@ -47,13 +47,70 @@ function Upload() {
   const [error, setError] = useState("");
   const [addProduct] = useMutation(ADD_PRODUCT);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
 
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    //get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      // Upload the image first and get the image URL
+      await uploadImage();
+  
+      // Perform form submission logic or API call to send the form data
+      const formData = {
+        name,
+        description,
+        category,
+        price,
+        quantity,
+        imageUrl: imageUrl || "",
+      };
+      console.log(formData);
+
+      const mutationResponse = await addProduct({
+        variables: {
+          name: formData.name,
+          description: formData.description,
+          category: formData.category,
+          price: formData.price,
+          quantity: formData.quantity,
+          imageUrl: formData.imageUrl
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+      // Make a POST request to your backend API route
+      // const response = await Axios.post("/api/uploadListing", formData);
+  
+      // if (response.status === 201) {
+      //   setModalIsOpen(true);
+      //   // Reset the form fields
+      //   setName("");
+      //   setDescription("");
+      //   setCategory("");
+      //   setPrice("");
+      //   setQuantity("");
+      //   setImageSelected("");
+      //   setImageUrl("");
+      //   setError("");
+      // } else {
+      //   setError("Error uploading listing");
+      // }
+    } catch (error) {
+      console.error(error);
+      setError("Error uploading listing");
+    }
+  };
+  
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -76,32 +133,6 @@ function Upload() {
         setUploading(false);
         setError("Error uploading image");
       });
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    // Perform form submission logic or API call here
-    const mutationResponse = await addProduct({
-      variables: {
-        name: name, 
-        description: description, 
-        imageUrl: imageUrl, 
-        quantity: quantity, 
-        price: price, 
-        category: category
-      },
-    });
-    const token = mutationResponse.data.addProduct.token;
-    Auth.loggedIn(token);
-
-    setName("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    setQuantity("");
-    setImageSelected("");
-    setImageUrl("");
   };
 
   return (

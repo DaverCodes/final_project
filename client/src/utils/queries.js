@@ -69,6 +69,16 @@ export const QUERY_USER = gql`
           }
         }
       }
+      products {
+          _id
+          name
+          description
+          price
+          quantity
+          imageUrl
+          category {
+            name
+          }
     }
   }
 `;
