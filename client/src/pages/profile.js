@@ -43,27 +43,52 @@ function Upload() {
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
 
   const closeModal = () => {
     setModalIsOpen(false);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    // Perform form submission logic or API call here
-
-    setName("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    setQuantity("");
-    setImageSelected("");
-    setImageUrl("");
+  
+    try {
+      // Upload the image first and get the image URL
+      await uploadImage();
+  
+      // Perform form submission logic or API call to send the form data
+      const formData = {
+        name,
+        description,
+        category,
+        price,
+        quantity,
+        imageUrl: imageUrl || "",
+      };
+      console.log(formData);
+  
+      // Make a POST request to your backend API route
+      const response = await Axios.post("/api/uploadListing", formData);
+  
+      if (response.status === 201) {
+        setModalIsOpen(true);
+        // Reset the form fields
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setQuantity("");
+        setImageSelected("");
+        setImageUrl("");
+        setError("");
+      } else {
+        setError("Error uploading listing");
+      }
+    } catch (error) {
+      console.error(error);
+      setError("Error uploading listing");
+    }
   };
+  
 
   const uploadImage = () => {
     const formData = new FormData();
