@@ -54,7 +54,7 @@ export const ADD_PRODUCT = gql`
 mutation Mutation(
   $name: String!, 
   $description: String!, 
-  $image: String!, 
+  $imageUrl: String!, 
   $quantity: Int!, 
   $price: Float!, 
   $category: String!
@@ -62,7 +62,7 @@ mutation Mutation(
   addProduct(
     name: $name, 
     description: $description, 
-    image: $image, 
+    imageUrl: $imageUrl, 
     quantity: $quantity, 
     price: $price, 
     category: $category

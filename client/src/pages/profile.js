@@ -46,6 +46,7 @@ function Upload() {
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
+  const [addProduct] = useMutation(ADD_PRODUCT);
 
   const openModal = () => {
     setModalIsOpen(true);
