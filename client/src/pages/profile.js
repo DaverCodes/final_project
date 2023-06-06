@@ -7,7 +7,6 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_PRODUCT } from '../utils/mutations';
 
-
 Modal.setAppElement("#root");
 
 const customModalStyles = {
@@ -56,20 +55,6 @@ function Upload() {
     setModalIsOpen(false);
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    // Perform form submission logic or API call here
-
-    setName("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    setQuantity("");
-    setImageSelected("");
-    setImageUrl("");
-  };
-
   const uploadImage = () => {
     const formData = new FormData();
     formData.append("file", imageSelected);
@@ -91,6 +76,32 @@ function Upload() {
         setUploading(false);
         setError("Error uploading image");
       });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    // Perform form submission logic or API call here
+    const mutationResponse = await addProduct({
+      variables: {
+        name: name, 
+        description: description, 
+        imageUrl: imageUrl, 
+        quantity: quantity, 
+        price: price, 
+        category: category
+      },
+    });
+    const token = mutationResponse.data.addProduct.token;
+    Auth.loggedIn(token);
+
+    setName("");
+    setDescription("");
+    setCategory("");
+    setPrice("");
+    setQuantity("");
+    setImageSelected("");
+    setImageUrl("");
   };
 
   return (

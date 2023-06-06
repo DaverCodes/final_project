@@ -51,7 +51,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-mutation Mutation(
+mutation addProduct(
   $name: String!, 
   $description: String!, 
   $imageUrl: String!, 
