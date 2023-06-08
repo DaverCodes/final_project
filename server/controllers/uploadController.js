@@ -1,17 +1,23 @@
 const Product = require('../models/Product');
+const Category = require('../models/Category')
 
 exports.uploadListing = async (req, res) => {
   try {
     const { name, description, price, quantity, category, imageUrl } = req.body;
     
+    const categoryId = await Category.findOne({
+      name: category
+    })
 
-    const product = new Product({
+console.log(req.body.category)
+console.log(categoryId)
+    const product = await Product.create({
       name,
       description,
       image: imageUrl,
       price,
       quantity,
-      category
+      category: categoryId.id
     });
 
     await product.save();
