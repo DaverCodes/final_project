@@ -4,7 +4,7 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const uploadListingRouter = require('./routes/api/uploadListing');
+// const uploadListingRouter = require('./routes/api/uploadListing');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // Mount the uploadListing route
-app.use('/api/uploadListing', uploadListingRouter);
+// app.use('/api/uploadListing', uploadListingRouter);
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
