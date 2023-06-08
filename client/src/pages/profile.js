@@ -19,16 +19,16 @@ const customModalStyles = {
 };
 
 const categories = [
-  "food",
-  "household supplies",
-  "electronics",
-  "books",
-  "toys",
-  "pharmacy",
-  "pet supplies",
-  "clothing & accessories",
-  "furniture",
-  "sports & outdoors",
+  "Food",
+  "Household Supplies",
+  "Electronics",
+  "Books",
+  "Toys",
+  "Pharmacy",
+  "Pet Supplies",
+  "Clothing & Accessories",
+  "Furniture",
+  "Sports & Outdoors",
 ];
 
 function Upload() {
