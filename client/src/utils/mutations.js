@@ -49,3 +49,23 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_PRODUCT = gql`
+mutation addProduct(
+  $name: String!, 
+  $description: String!, 
+  $imageUrl: String!, 
+  $quantity: Int!, 
+  $price: Float!, 
+  $category: String!
+  ) {
+  addProduct(
+    name: $name, 
+    description: $description, 
+    imageUrl: $imageUrl, 
+    quantity: $quantity, 
+    price: $price, 
+    category: $category
+    ) 
+}
+`;

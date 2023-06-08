@@ -3,6 +3,9 @@ import Axios from "axios";
 import { Image } from "cloudinary-react";
 import Modal from "react-modal";
 import "./Profile.css"
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_PRODUCT } from '../utils/mutations';
 
 Modal.setAppElement("#root");
 
@@ -42,6 +45,7 @@ function Upload() {
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
+  const [addProduct] = useMutation(ADD_PRODUCT);
 
 
   const closeModal = () => {
@@ -50,7 +54,13 @@ function Upload() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-  
+    //get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       // Upload the image first and get the image URL
       await uploadImage();
@@ -65,24 +75,36 @@ function Upload() {
         imageUrl: imageUrl || "",
       };
       console.log(formData);
-  
+
+      const mutationResponse = await addProduct({
+        variables: {
+          name: formData.name,
+          description: formData.description,
+          category: formData.category,
+          price: formData.price,
+          quantity: formData.quantity,
+          imageUrl: formData.imageUrl
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
       // Make a POST request to your backend API route
-      const response = await Axios.post("/api/uploadListing", formData);
+      // const response = await Axios.post("/api/uploadListing", formData);
   
-      if (response.status === 201) {
-        setModalIsOpen(true);
-        // Reset the form fields
-        setName("");
-        setDescription("");
-        setCategory("");
-        setPrice("");
-        setQuantity("");
-        setImageSelected("");
-        setImageUrl("");
-        setError("");
-      } else {
-        setError("Error uploading listing");
-      }
+      // if (response.status === 201) {
+      //   setModalIsOpen(true);
+      //   // Reset the form fields
+      //   setName("");
+      //   setDescription("");
+      //   setCategory("");
+      //   setPrice("");
+      //   setQuantity("");
+      //   setImageSelected("");
+      //   setImageUrl("");
+      //   setError("");
+      // } else {
+      //   setError("Error uploading listing");
+      // }
     } catch (error) {
       console.error(error);
       setError("Error uploading listing");
