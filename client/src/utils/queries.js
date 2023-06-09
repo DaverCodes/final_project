@@ -79,6 +79,7 @@ export const QUERY_USER = gql`
           category {
             name
           }
+      }
     }
   }
 `;

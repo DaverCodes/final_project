@@ -89,22 +89,22 @@ function Upload() {
       const token = mutationResponse.data.addUser.token;
       Auth.login(token);
       // Make a POST request to your backend API route
-      // const response = await Axios.post("/api/uploadListing", formData);
+      const response = await Axios.post("/api/uploadListing", formData);
   
-      // if (response.status === 201) {
-      //   setModalIsOpen(true);
-      //   // Reset the form fields
-      //   setName("");
-      //   setDescription("");
-      //   setCategory("");
-      //   setPrice("");
-      //   setQuantity("");
-      //   setImageSelected("");
-      //   setImageUrl("");
-      //   setError("");
-      // } else {
-      //   setError("Error uploading listing");
-      // }
+      if (response.status === 201) {
+        setModalIsOpen(true);
+        // Reset the form fields
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setQuantity("");
+        setImageSelected("");
+        setImageUrl("");
+        setError("");
+      } else {
+        setError("Error uploading listing");
+      }
     } catch (error) {
       console.error(error);
       setError("Error uploading listing");
