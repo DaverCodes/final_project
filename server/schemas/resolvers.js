@@ -63,7 +63,7 @@ const resolvers = {
         const product = await stripe.products.create({
           name: products[i].name,
           description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+          images: [`${url}/images/${products[i].imageUrl}`]
         });
 
         const price = await stripe.prices.create({
@@ -108,13 +108,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    addProduct: async (parent, { name, description, image, price, quantity, category }, context) => {
+    addProduct: async (parent, { name, description, imageUrl, price, quantity, category }, context) => {
       if (context.user) {
         const categoryId = await Category.findOne({ name: category });
         const product = await Product.create({
           name,
           description,
-          image,
+          imageUrl,
           price,
           quantity,
           category: categoryId.id
