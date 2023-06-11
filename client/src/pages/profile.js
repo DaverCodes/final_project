@@ -63,8 +63,8 @@ function Upload() {
 
     try {
       // Upload the image first and get the image URL
-      await uploadImage();
-
+  uploadImage()
+ 
       // Perform form submission logic or API call to send the form data
       const formData = {
         name,
@@ -86,33 +86,29 @@ function Upload() {
           imageUrl: formData.imageUrl,
         },
       });
-      const token = mutationResponse.data.addUser.token;
+      const token = mutationResponse.data.addProduct.token;
+      console.log(token);
       Auth.login(token);
-      // Make a POST request to your backend API route
-      const response = await Axios.post("/api/uploadListing", formData);
 
-      if (response.status === 201) {
-        setModalIsOpen(true);
-        // Reset the form fields
-        setName("");
-        setDescription("");
-        setCategory("");
-        setPrice("");
-        setQuantity("");
-        setImageSelected("");
-        setImageUrl("");
-        setError("");
-      } else {
-        setError("Error uploading listing");
-      }
+      // Reset the form fields
+      setName("");
+      setDescription("");
+      setCategory("");
+      setPrice("");
+      setQuantity("");
+      setImageSelected("");
+      setImageUrl("");
+      setError("");
+
     } catch (error) {
       console.error(error);
-      setError("Error uploading listing");
+      setError("this error");
     }
   };
 
   const uploadImage = () => {
     const formData = new FormData();
+
     formData.append("file", imageSelected);
     formData.append("upload_preset", "wayfarer");
     setUploading(true);
