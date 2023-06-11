@@ -119,7 +119,8 @@ const resolvers = {
           quantity,
           category: categoryId.id
         });
-        return { categoryId, product };
+        
+        return "hello";
       }
       throw new AuthenticationError('Not logged in');
     },
