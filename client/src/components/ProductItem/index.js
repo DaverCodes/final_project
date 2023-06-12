@@ -8,7 +8,7 @@ import { idbPromise } from '../../utils/helpers';
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, quantity } = item;
+  const { imageUrl, name, _id, price, quantity } = item;
 
   const { cart } = state;
 
@@ -38,7 +38,7 @@ function ProductItem(item) {
       <Link to={`/products/${_id}`}>
       <img
           alt={name}
-          src={image}
+          src={imageUrl}
         />        
       <p>{name}</p>
       </Link>

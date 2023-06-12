@@ -1,10 +1,10 @@
 :root {
-  --primary: #d2d2e6;
-  --secondary: #c437e7;
-  --tertiary: #2c2c69;
+  --primary: #B4CDED;
+  --secondary: #1BC4C1;
+  --tertiary: #B4CDED;
   --light: #311cbd;
-  --dark: #2e1760;
-  --error: rgb(150, 35, 6);
+  --dark: #107E7D;
+  --error: #AF3800;
   --spacing-one: calc(1rem * 0.5);
   --spacing-two: calc(1rem);
 }
@@ -63,7 +63,7 @@ p {
 }
 
 a {
-  color: var(--tertiary);
+  color: var(--primary);
   text-decoration: none;
   font-weight: bold;
 }
