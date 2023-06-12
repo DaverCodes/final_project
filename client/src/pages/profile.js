@@ -84,6 +84,7 @@ function Upload() {
           imageUrl: formData.imageUrl,
         },
       });
+      console.log(mutationResponse);
 
       
 
@@ -99,7 +100,7 @@ function Upload() {
       setImageSelected("");
       setImageUrl("");
       setError("");
-
+      window.location.reload();
     } catch (error) {
       console.error(error);
       setError("this error");
