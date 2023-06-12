@@ -52,16 +52,19 @@ export const ADD_USER = gql`
 
 export const ADD_PRODUCT = gql`
   mutation addProduct(
+
     $name: String
     $description: String
     $imageUrl: String
     $price: Int!
     $quantity: Int
     $category: String
+
   ) {
     addProduct(
       name: $name
       description: $description
+
       imageUrl: $imageUrl
       price: $price
       quantity: $quantity
@@ -73,6 +76,7 @@ export const ADD_PRODUCT = gql`
     category {
       name
     }
+
     }
   }
 `;

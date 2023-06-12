@@ -64,7 +64,7 @@ function Upload() {
     try {
       // Upload the image first and get the image URL
   uploadImage()
-  
+
       // Perform form submission logic or API call to send the form data
       const formData = {
         name,
@@ -86,12 +86,14 @@ function Upload() {
           imageUrl: formData.imageUrl,
         },
       });
+
       // console.log(mutationResponse)
       // const token = mutationResponse.data.addProduct.token;
       // console.log(token);
       // Auth.login(token);
       
     
+
 
       // Reset the form fields
       setName("");
@@ -102,6 +104,7 @@ function Upload() {
       setImageSelected("");
       setImageUrl("");
       setError("");
+
     } catch (error) {
       console.error(error);
       setError("this error");

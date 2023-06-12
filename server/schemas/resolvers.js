@@ -120,7 +120,9 @@ const resolvers = {
           category: categoryId.id
         });
         
+
         return {categoryId, product};
+
       }
       throw new AuthenticationError('Not logged in');
     },
