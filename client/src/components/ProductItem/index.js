@@ -8,7 +8,7 @@ import { idbPromise } from '../../utils/helpers';
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, quantity } = item; // Update the destructuring here
+  const { image, name, _id, price, quantity } = item;
 
   const { cart } = state;
 
