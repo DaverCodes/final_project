@@ -41,7 +41,7 @@ function ProductList({ imageUrl }) {
       (product) => product.category._id === currentCategory
     );
   }
-
+console.log(state.products)
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
@@ -51,7 +51,7 @@ function ProductList({ imageUrl }) {
             <ProductItem
               key={product._id}
               _id={product._id}
-              imageUrl={imageUrl} // Pass the imageUrl prop here
+              image={product.imageUrl} // Pass the imageUrl prop here
               name={product.name}
               price={product.price}
               quantity={product.quantity}

@@ -78,17 +78,18 @@ function Upload() {
 
       const mutationResponse = await addProduct({
         variables: {
-          name: formData.name,
           description: formData.description,
           category: formData.category,
-          price: formData.price,
-          quantity: formData.quantity,
+          name: formData.name,
+          price: parseInt(formData.price),
+          quantity: parseInt(formData.quantity),
           imageUrl: formData.imageUrl,
         },
       });
-      const token = mutationResponse.data.addProduct.token;
-      console.log(token);
-      Auth.login(token);
+      // console.log(mutationResponse)
+      // const token = mutationResponse.data.addProduct.token;
+      // console.log(token);
+      // Auth.login(token);
       
     
 

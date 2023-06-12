@@ -52,32 +52,27 @@ export const ADD_USER = gql`
 
 export const ADD_PRODUCT = gql`
   mutation addProduct(
-    $name: String!
-    $description: String!
-    $imageUrl: String!
-    $quantity: Int!
-    $price: Float!
-    $category: String!
+    $name: String
+    $description: String
+    $imageUrl: String
+    $price: Int!
+    $quantity: Int
+    $category: String
   ) {
     addProduct(
       name: $name
       description: $description
-      imageUrl: $image
-      quantity: $quantity
+      imageUrl: $imageUrl
       price: $price
+      quantity: $quantity
       category: $category
-    ) {
-      categoryId
-      product {
-        _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
-        }
-      }
+
+    ) 
+    {
+      name
+    category {
+      name
+    }
     }
   }
 `;
