@@ -5,7 +5,8 @@ import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-function ProductList() {
+
+function ProductList({ imageUrl }) {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
@@ -50,7 +51,7 @@ function ProductList() {
             <ProductItem
               key={product._id}
               _id={product._id}
-              image={product.image}
+              imageUrl={imageUrl} // Pass the imageUrl prop here
               name={product.name}
               price={product.price}
               quantity={product.quantity}

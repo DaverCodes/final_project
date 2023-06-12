@@ -6,6 +6,7 @@ import "./Profile.css"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../utils/mutations';
+import ProductList from '../components/ProductList'; // Import the ProductList component
 
 Modal.setAppElement("#root");
 
@@ -47,7 +48,6 @@ function Upload() {
   const [error, setError] = useState("");
   const [addProduct] = useMutation(ADD_PRODUCT);
 
-
   const closeModal = () => {
     setModalIsOpen(false);
   };
@@ -64,7 +64,7 @@ function Upload() {
     try {
       // Upload the image first and get the image URL
   uploadImage()
-  
+ 
       // Perform form submission logic or API call to send the form data
       const formData = {
         name,
@@ -83,14 +83,12 @@ function Upload() {
           category: formData.category,
           price: formData.price,
           quantity: formData.quantity,
-          imageUrl: formData.imageUrl
+          imageUrl: formData.imageUrl,
         },
       });
       const token = mutationResponse.data.addProduct.token;
       console.log(token);
       Auth.login(token);
-      
-    
 
       // Reset the form fields
       setName("");
@@ -101,12 +99,12 @@ function Upload() {
       setImageSelected("");
       setImageUrl("");
       setError("");
+
     } catch (error) {
       console.error(error);
       setError("this error");
     }
   };
-  
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -134,6 +132,7 @@ function Upload() {
 
   return (
     <div className="container">
+      <ProductList imageUrl={imageUrl} />
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
