@@ -87,15 +87,7 @@ function Upload() {
         },
       });
 
-      // console.log(mutationResponse)
-      // const token = mutationResponse.data.addProduct.token;
-      // console.log(token);
-      // Auth.login(token);
-      
-    
 
-
-      // Reset the form fields
       setName("");
       setDescription("");
       setCategory("");
@@ -138,6 +130,7 @@ function Upload() {
   return (
     <div className="container">
       <ProductList imageUrl={imageUrl} />
+      <h1>List Your Stuff</h1>
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
