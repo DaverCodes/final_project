@@ -64,7 +64,7 @@ function Upload() {
     try {
       // Upload the image first and get the image URL
   uploadImage()
- 
+
       // Perform form submission logic or API call to send the form data
       const formData = {
         name,
@@ -78,17 +78,22 @@ function Upload() {
 
       const mutationResponse = await addProduct({
         variables: {
-          name: formData.name,
           description: formData.description,
           category: formData.category,
-          price: formData.price,
-          quantity: formData.quantity,
+          name: formData.name,
+          price: parseInt(formData.price),
+          quantity: parseInt(formData.quantity),
           imageUrl: formData.imageUrl,
         },
       });
-      const token = mutationResponse.data.addProduct.token;
-      console.log(token);
-      Auth.login(token);
+
+      // console.log(mutationResponse)
+      // const token = mutationResponse.data.addProduct.token;
+      // console.log(token);
+      // Auth.login(token);
+      
+    
+
 
       // Reset the form fields
       setName("");
