@@ -51,7 +51,7 @@ console.log(state.products)
             <ProductItem
               key={product._id}
               _id={product._id}
-              image={product.imageUrl} // Pass the imageUrl prop here
+              image={product.imageUrl}
               name={product.name}
               price={product.price}
               quantity={product.quantity}

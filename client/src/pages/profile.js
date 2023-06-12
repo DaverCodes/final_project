@@ -6,7 +6,7 @@ import "./Profile.css"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_PRODUCT } from '../utils/mutations';
-import ProductList from '../components/ProductList'; // Import the ProductList component
+import ProductList from '../components/ProductList';
 
 Modal.setAppElement("#root");
 
@@ -54,7 +54,7 @@ function Upload() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    //get token
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -62,10 +62,8 @@ function Upload() {
     }
 
     try {
-      // Upload the image first and get the image URL
-  uploadImage()
 
-      // Perform form submission logic or API call to send the form data
+      uploadImage()
       const formData = {
         name,
         description,
@@ -87,15 +85,12 @@ function Upload() {
         },
       });
 
-      // console.log(mutationResponse)
-      // const token = mutationResponse.data.addProduct.token;
-      // console.log(token);
-      // Auth.login(token);
       
-    
 
 
-      // Reset the form fields
+
+
+     
       setName("");
       setDescription("");
       setCategory("");
